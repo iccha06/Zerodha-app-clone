@@ -2,4 +2,6 @@ node_modules/
 dist/
 build/
 .env
+.env.*
+!frontend/.env.production
 .DS_Store

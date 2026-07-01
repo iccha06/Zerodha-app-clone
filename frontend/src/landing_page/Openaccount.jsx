@@ -3,7 +3,7 @@ import React from 'react';
 function OpenAccount() {
     const handleSignup = () => {
     // Dashboard URL (Development)
-    window.location.href = "http://localhost:5174/login";
+    window.location.href = `${import.meta.env.VITE_DASHBOARD_URL}/login`;
   };
     return (
         <div className='container py-5 mb-5'>
