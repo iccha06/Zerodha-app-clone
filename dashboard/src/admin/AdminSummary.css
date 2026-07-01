@@ -1,0 +1,523 @@
+/* ─── AdminSummary.css ─── */
+
+/* .admin-dashboard {
+  padding: 0 0 2rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: #1a1a1a;
+  background: #f5f6fa;
+  min-height: 100vh;
+} */
+ .admin-dashboard {
+  min-height: 100vh;
+  padding: 24px;
+  background: linear-gradient(
+    180deg,
+    #f8fafc 0%,
+    #f3f6fb 45%,
+    #eef3f9 100%
+  );
+
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, sans-serif;
+
+  color: #1f2937;
+  box-sizing: border-box;
+}
+
+/* Smooth font rendering */
+.admin-dashboard * {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+/* ── Ticker Bar ── */
+.ticker-bar {
+  display: flex;
+  gap: 28px;
+  align-items: center;
+  padding: 10px 24px;
+  background: #fff;
+  border-bottom: 1px solid #e8eaed;
+  flex-wrap: wrap;
+  font-size: 13px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.ticker-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.ticker-label {
+  color: #666;
+  font-weight: 400;
+}
+.ticker-val {
+  font-weight: 600;
+  color: #1a1a1a;
+}
+.ticker-up {
+  color: #00a86b;
+  font-size: 12px;
+}
+.ticker-dn {
+  color: #e84040;
+  font-size: 12px;
+}
+.market-status {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: #00a86b;
+  font-weight: 500;
+}
+.market-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #00a86b;
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+/* ── Page Content Wrapper ── */
+.dashboard-content {
+  padding: 20px 24px 0;
+}
+
+/* ── Header ── */
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.dashboard-header h2 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 4px;
+}
+.dashboard-header p {
+  font-size: 13px;
+  color: #666;
+}
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.date-badge {
+  font-size: 12px;
+  color: #555;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 6px 12px;
+  background: #fff;
+  white-space: nowrap;
+}
+.refresh-btn {
+  font-size: 12px;
+  padding: 6px 14px;
+  border: 1px solid #d0d0d0;
+  border-radius: 8px;
+  background: #fff;
+  color: #333;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.refresh-btn:hover { background: #f0f0f0; }
+.refresh-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* ── Error Banner ── */
+.dashboard-error {
+  background: #fff3f3;
+  border: 1px solid #fac5c5;
+  color: #c0392b;
+  border-radius: 10px;
+  padding: 12px 16px;
+  font-size: 13px;
+  margin-bottom: 20px;
+}
+
+/* ── KPI Grid ── */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.kpi-card {
+  background: #fff;
+  border: 1px solid #e8eaed;
+  border-radius: 14px;
+  padding: 16px 18px;
+  transition: box-shadow 0.15s;
+}
+.kpi-card:hover {
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+}
+.kpi-top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.kpi-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+.kpi-label {
+  font-size: 12px;
+  color: #777;
+  font-weight: 400;
+  line-height: 1.3;
+}
+.kpi-value {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1a1a1a;
+  line-height: 1.1;
+  margin-bottom: 6px;
+}
+.kpi-delta {
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.delta-up { color: #00a86b; }
+.delta-dn { color: #e84040; }
+/* ── Analytics Charts Row ── */
+.analytics-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.analytics-grid > * {
+  min-width: 0;
+}
+
+/* Tablet */
+@media (max-width: 1200px) {
+  .analytics-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .analytics-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Charts Section */
+.dashboard-charts {
+  margin-top: 20px;
+}
+
+.chart-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+/* Chart Cards */
+.admin-card.chart-card {
+  background: #fff;
+  border: 1px solid #eef0f3;
+  border-radius: 14px;
+  padding: 16px;
+  height: 340px;
+
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+
+  display: flex;
+  flex-direction: column;
+}
+
+/* Chart Titles */
+.admin-card.chart-card h3 {
+  margin: 0 0 12px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+/* Make charts fill available space */
+.admin-card.chart-card canvas {
+  flex: 1 !important;
+  max-height: 260px !important;
+}
+
+/* Tablet */
+@media (max-width: 1100px) {
+  .chart-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .chart-row {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-card.chart-card {
+    height: 320px;
+  }
+}
+/* ── Tables Grid ── */
+.admin-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+@media (max-width: 900px) {
+  .admin-grid { grid-template-columns: 1fr; }
+}
+
+.table-card {
+  background: #fff;
+  border: 1px solid #e8eaed;
+  border-radius: 14px;
+  padding: 18px;
+  overflow: hidden;
+}
+.table-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+.table-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+.view-all-link {
+  font-size: 12px;
+  color: #3d7eff;
+  cursor: pointer;
+  text-decoration: none;
+  font-weight: 500;
+}
+.view-all-link:hover { text-decoration: underline; }
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12.5px;
+}
+.data-table th {
+  color: #888;
+  font-weight: 500;
+  text-align: left;
+  padding: 0 10px 10px 0;
+  border-bottom: 1px solid #f0f0f0;
+  white-space: nowrap;
+}
+.data-table td {
+  color: #1a1a1a;
+  padding: 10px 10px 0 0;
+  vertical-align: middle;
+}
+.data-table tr:not(:last-child) td {
+  border-bottom: 1px solid #f7f7f7;
+  padding-bottom: 10px;
+}
+
+/* ── Status Badges ── */
+.badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 3px 9px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+.badge-executed  { background: #e6f9f2; color: #00875a; }
+.badge-pending   { background: #fff8e6; color: #b07d00; }
+.badge-cancelled { background: #ffeaea; color: #cc3333; }
+.badge-rejected  { background: #f0eeff; color: #5e47cc; }
+.badge-active    { background: #e6f9f2; color: #00875a; }
+.badge-inactive  { background: #ffeaea; color: #cc3333; }
+.badge-verified  { background: #e6f0ff; color: #2255cc; }
+.badge-kyc-pending { background: #fff8e6; color: #b07d00; }
+.badge-buy  { background: #e6f9f2; color: #00875a; }
+.badge-sell { background: #ffeaea; color: #cc3333; }
+
+/* ── Bottom Grid: TopStocks + SystemHealth ── */
+.bottom-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+@media (max-width: 900px) {
+  .bottom-grid { grid-template-columns: 1fr; }
+}
+
+/* ── Stock Management Section ── */
+.stocks-section {
+  background: #fff;
+  border: 1px solid #e8eaed;
+  border-radius: 14px;
+  padding: 18px;
+  margin-bottom: 20px;
+}
+.stocks-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.stocks-section-header .table-title {
+  font-size: 15px;
+}
+.stocks-controls {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.stocks-search {
+  font-size: 12px;
+  padding: 6px 12px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  outline: none;
+  width: 180px;
+  background: #f9f9f9;
+}
+.stocks-search:focus {
+  border-color: #3d7eff;
+  background: #fff;
+}
+.stocks-filter-btn {
+  font-size: 12px;
+  padding: 6px 12px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background: #f9f9f9;
+  color: #333;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.stocks-filter-btn.active,
+.stocks-filter-btn:hover {
+  background: #3d7eff;
+  color: #fff;
+  border-color: #3d7eff;
+}
+
+.stock-change-up { color: #00a86b; font-weight: 500; font-size: 12px; }
+.stock-change-dn { color: #e84040; font-weight: 500; font-size: 12px; }
+
+/* ── System Health ── */
+.health-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.health-item {
+  background: #f8f9fc;
+  border-radius: 10px;
+  padding: 12px 14px;
+}
+.health-item-label {
+  font-size: 11px;
+  color: #888;
+  margin-bottom: 4px;
+}
+.health-item-val {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+.health-bar-wrap {
+  margin-top: 6px;
+  height: 4px;
+  background: #e8eaed;
+  border-radius: 99px;
+  overflow: hidden;
+}
+.health-bar {
+  height: 100%;
+  border-radius: 99px;
+  transition: width 0.6s ease;
+}
+
+/* ── Top Stocks (Gainers/Losers) ── */
+.top-stocks-tabs {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 12px;
+}
+.top-stocks-tab {
+  font-size: 12px;
+  padding: 5px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  border: 1px solid #e0e0e0;
+  background: #f9f9f9;
+  color: #555;
+  font-weight: 500;
+}
+.top-stocks-tab.active {
+  background: #3d7eff;
+  color: #fff;
+  border-color: #3d7eff;
+}
+.top-stock-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid #f5f5f5;
+  font-size: 13px;
+}
+.top-stock-row:last-child { border-bottom: none; }
+.top-stock-name { font-weight: 500; color: #1a1a1a; }
+.top-stock-price { color: #555; font-size: 12px; }
+
+/* ── Loading Skeleton ── */
+.skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 6px;
+}
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+
+
+
+
+

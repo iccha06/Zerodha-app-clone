@@ -1,0 +1,135 @@
+/* ===== Admin Dashboard Cards ===== */
+
+.admin-card {
+  background: #ffffff;
+  border: 1px solid #eef0f3;
+  border-radius: 12px;
+  padding: 20px 24px;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
+}
+
+.admin-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.admin-card-header h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #101828;
+  margin: 0;
+}
+
+/* "View All" pill button */
+.view-all-btn {
+  background: #eef4ff;
+  color: #3467d6;
+  border: none;
+  border-radius: 8px;
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.view-all-btn:hover {
+  background: #dfeaff;
+}
+
+.view-all-btn:focus-visible {
+  outline: 2px solid #97afe7;
+  outline-offset: 2px;
+}
+
+/* Allow horizontal scroll on small screens instead of crushing columns */
+.admin-card-table-wrap {
+  overflow-x: auto;
+}
+
+.admin-card table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.admin-card thead th {
+  text-align: left;
+  font-weight: 500;
+  color: #667085;
+  padding: 10px 12px;
+  border-bottom: 1px solid #eef0f3;
+  white-space: nowrap;
+}
+
+.admin-card tbody td {
+  padding: 14px 12px;
+  color: #101828;
+  border-bottom: 1px solid #f5f6f8;
+  white-space: nowrap;
+}
+
+.admin-card tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.cell-muted {
+  color: #667085;
+}
+
+/* ===== Status pill badges ===== */
+.status-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 16px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.status-executed {
+  background: #e7f6ec;
+  color: #1a9a4c;
+}
+
+.status-pending {
+  background: #fef3e2;
+  color: #c98a1a;
+}
+
+.status-cancelled {
+  background: #fdecec;
+  color: #d8463a;
+}
+
+/* ===== Buy / Sell tags (orders table) ===== */
+.buy,
+.sell {
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.buy {
+  color: #f9fefb;
+}
+
+.sell {
+  color: #d8463a;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  .admin-card {
+    padding: 16px;
+  }
+
+  .admin-card-header h3 {
+    font-size: 16px;
+  }
+
+  .admin-card table {
+    font-size: 13px;
+  }
+}

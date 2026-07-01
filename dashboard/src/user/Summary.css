@@ -1,0 +1,1903 @@
+/*
+ .summary-page {
+  padding: 30px;
+  background: #f7f9fc;
+  min-height: 100vh;
+}
+
+/* HEADER */
+/*
+.dashboard-header {
+  margin-bottom: 30px;
+}
+
+.dashboard-header h2 {
+  font-size: 32px;
+  color: #222;
+  margin-bottom: 5px;
+}
+
+.dashboard-header p {
+  color: #777;
+  font-size: 15px;
+}
+
+/* KPI CARDS */
+/*
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+  margin-bottom: 35px;
+}
+
+.stat-card {
+  background: white;
+  border-radius: 18px;
+  padding: 24px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  transition: 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-6px);
+}
+
+.card-icon {
+  font-size: 28px;
+  color: #387ed1;
+  margin-bottom: 12px;
+}
+
+.stat-card h4 {
+  color: #777;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.stat-card h2 {
+  font-size: 28px;
+  margin: 0;
+  color: #222;
+}
+
+
+/* ROWS */
+/*
+.dashboard-row {
+  display: grid;
+  gap: 25px;
+  margin-bottom: 30px;
+}
+
+.dashboard-row-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.dashboard-row-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+/* CARDS */
+/*
+.chart-card,
+.widget-card,
+.investment-card {
+  background: white;
+  border-radius: 18px;
+  padding: 25px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+}
+
+.chart-card h3,
+.widget-card h3,
+.investment-card h3 {
+  margin-bottom: 20px;
+  color: #222;
+  font-size: 18px;
+}
+
+/* TOP HOLDINGS & ORDERS */
+/*
+.widget-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.widget-row:last-child {
+  border-bottom: none;
+}
+
+.widget-row strong {
+  font-size: 15px;
+  color: #222;
+}
+
+.widget-row small {
+  color: #888;
+}
+
+/* SUMMARY */
+/*
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 35px;
+}
+
+.summary-grid p {
+  color: #888;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.summary-grid h4 {
+  font-size: 22px;
+  margin: 0;
+  color: #222;
+}
+
+.summary-grid small {
+  display: block;
+  margin-top: 6px;
+  color: #888;
+}
+
+/* COLORS */
+/*
+.profit {
+  color: #19b56b !important;
+}
+
+.loss {
+  color: #ff5252 !important;
+}
+
+/* CHARTS */
+/*
+.chart-card canvas {
+  max-height: 280px !important;
+}
+
+/* PORTFOLIO HEALTH */
+/*
+.investment-card {
+  margin-bottom: 30px;
+}
+
+/* LOADING *//*
+.loading-dashboard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70vh;
+  font-size: 22px;
+  color: #666;
+}
+
+/* RESPONSIVE */
+/*
+@media (max-width: 1200px) {
+  .dashboard-row-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+
+  .dashboard-row,
+  .dashboard-row-2,
+  .dashboard-row-3 {
+    grid-template-columns: 1fr;
+  }
+
+  .summary-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .dashboard-header h2 {
+    font-size: 26px;
+  }
+
+  .stat-card h2 {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 600px) {
+
+  .summary-page {
+    padding: 15px;
+  }
+
+  .stats-grid {
+    gap: 15px;
+  }
+
+  .stat-card {
+    padding: 18px;
+  }
+
+  .chart-card,
+  .widget-card,
+  .investment-card {
+    padding: 18px;
+  }
+} 
+/* ==========================================================================
+   Summary.css — Portfolio Dashboard (Light)
+   Clean white "brokerage statement" look. Tabular mono numerals for every
+   money/percent figure. Profit/loss carried only by color (green/red).
+   Stat strip is forced to one row; charts and summary pairs sit side by side.
+   ========================================================================== */
+/* 
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap");
+
+:root {
+  --bg: #f7f8fa;
+  --surface: #ffffff;
+  --border: #e7e9ed;
+  --border-soft: #eef0f3;
+
+  --text: #1a1d24;
+  --text-muted: #6b7280;
+  --text-faint: #9aa1ac;
+
+  --profit: #0a9d62;
+  --profit-bg: #e7f7ef;
+  --loss: #e0334d;
+  --loss-bg: #fdebee;
+  --accent: #3b6fd9;
+  --accent-bg: #eaf0fd;
+
+  --font-display: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: "JetBrains Mono", "SF Mono", Menlo, monospace;
+
+  --radius: 12px;
+  --radius-sm: 8px;
+  --shadow: 0 1px 2px rgba(20, 24, 32, 0.04), 0 1px 8px rgba(20, 24, 32, 0.03);
+}
+
+/* ---------------------------------- base --------------------------------- */
+/*
+.summary-page {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-display);
+  padding: 28px clamp(16px, 4vw, 40px) 60px;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.summary-page * {
+  box-sizing: border-box;
+}
+
+.summary-page h2,
+.summary-page h3,
+.summary-page h4 {
+  margin: 0;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.summary-page p {
+  margin: 0;
+}
+
+.profit {
+  color: var(--profit) !important;
+}
+
+.loss {
+  color: var(--loss) !important;
+}
+
+/* --------------------------------- header -------------------------------- */
+/*
+.dashboard-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 22px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.dashboard-header h2 {
+  font-size: 1.4rem;
+  color: var(--text);
+}
+
+.dashboard-header h2::after {
+  content: "";
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  margin-left: 10px;
+  border-radius: 50%;
+  background: var(--profit);
+  box-shadow: 0 0 0 0 rgba(10, 157, 98, 0.45);
+  animation: live-pulse 2.2s ease-out infinite;
+  vertical-align: middle;
+}
+
+@keyframes live-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(10, 157, 98, 0.4); }
+  70% { box-shadow: 0 0 0 7px rgba(10, 157, 98, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(10, 157, 98, 0); }
+}
+
+/* ------------------------------- stats grid ------------------------------- */
+/* Forced single row: 6 equal-width cards that shrink together, never wrap. */
+/*
+.stats-grid {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 10px;
+  margin-bottom: 22px;
+}
+
+.stat-card {
+  position: relative;
+  flex: 1 1 0;
+  min-width: 0;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow);
+  padding: 12px 12px 11px;
+  overflow: hidden;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(20, 24, 32, 0.07);
+}
+
+.stat-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--text-faint);
+  opacity: 0.35;
+}
+
+.stat-card:nth-of-type(1)::before { background: var(--accent); opacity: 1; }
+.stat-card:nth-of-type(3)::before { background: var(--profit); opacity: 1; }
+.stat-card:nth-of-type(3):has(h2.loss)::before { background: var(--loss); }
+
+.stat-card .card-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 0.78rem;
+  color: var(--text-faint);
+}
+
+.stat-card h4 {
+  font-size: 0.62rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 14px;
+}
+
+.stat-card h2 {
+  font-family: var(--font-mono);
+  font-size: clamp(0.95rem, 1.4vw, 1.2rem);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.stat-card h2.profit,
+.stat-card h2.loss {
+  font-weight: 700;
+}
+
+/* ------------------------------- chart cards ------------------------------ */
+/*
+.chart-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 18px 20px;
+}
+
+.chart-card h3 {
+  font-size: 0.92rem;
+  color: var(--text);
+  margin-bottom: 14px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+/* Performance + Allocation side by side, plus everywhere else .dashboard-row
+   is used (insights, holdings/orders, summary/health). *//*
+.dashboard-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+  align-items: stretch;
+}
+
+.growth-chart {
+  grid-column: span 1;
+}
+
+.growth-chart canvas {
+  max-height: 240px;
+}
+
+.dashboard-row .chart-card:last-child canvas {
+  max-height: 220px;
+}
+
+@media (max-width: 860px) {
+  .dashboard-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --------------------------- portfolio insights --------------------------- */
+/*
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px 12px;
+}
+
+.summary-grid > div p {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  margin-bottom: 5px;
+}
+
+.summary-grid > div h4 {
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--text);
+}
+
+/* ------------------------------- profile card ------------------------------ */
+/*
+.profile-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 16px 20px;
+  margin-bottom: 16px;
+}
+
+.avatar {
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), #2b54ad);
+  color: #ffffff;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+.profile-card h3 {
+  font-size: 0.98rem;
+  color: var(--text);
+}
+
+.profile-card p {
+  font-size: 0.76rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+/* ------------------------- holdings / orders widgets ----------------------- */
+/*
+.widget-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 16px 18px;
+}
+
+.widget-card h3 {
+  font-size: 0.92rem;
+  margin-bottom: 4px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+/* Top Holdings rows: name (hidden dup span) / name+qty block / price.
+   Give the price column a fixed, generous, right-aligned lane so it never
+   sits flush against the qty text. *//*
+.widget-card:first-of-type .widget-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  column-gap: 20px;
+  padding: 11px 4px;
+  border-bottom: 1px solid var(--border-soft);
+  font-size: 0.85rem;
+}
+
+.widget-card:first-of-type .widget-row > span:first-child {
+  display: none;
+}
+
+.widget-card:first-of-type .widget-row > div:first-of-type {
+  line-height: 1.35;
+}
+
+.widget-card:first-of-type .widget-row > div:first-of-type strong {
+  font-weight: 600;
+  color: var(--text);
+  font-size: 0.86rem;
+}
+
+.widget-card:first-of-type .widget-row > div:first-of-type br {
+  display: block;
+  content: "";
+  margin-top: 2px;
+}
+
+.widget-card:first-of-type .widget-row > div:last-child {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  font-weight: 600;
+  color: var(--text);
+  font-size: 0.9rem;
+  white-space: nowrap;
+  min-width: 90px;
+}
+
+/* Recent Orders rows: name / mode badge / qty *//*
+.widget-card:last-of-type .widget-row {
+  display: grid;
+  grid-template-columns: 1.4fr auto 56px;
+  align-items: center;
+  column-gap: 14px;
+  padding: 11px 4px;
+  border-bottom: 1px solid var(--border-soft);
+  font-size: 0.85rem;
+}
+
+.widget-card .widget-row:last-child {
+  border-bottom: none;
+}
+
+.widget-card:last-of-type .widget-row > span:first-child {
+  font-weight: 600;
+  color: var(--text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.widget-card:last-of-type .widget-row > span:nth-child(2) {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  padding: 3px 9px;
+  border-radius: 4px;
+  background: var(--accent-bg);
+  color: var(--accent);
+  justify-self: start;
+  white-space: nowrap;
+}
+
+/* Add className="sell" on the order-mode <span> (BUY vs SELL) in Summary.js
+   for red styling — CSS can only match a class, not the text itself. *//*
+.widget-card:last-of-type .widget-row > span.sell {
+  background: var(--loss-bg);
+  color: var(--loss);
+}
+
+.widget-card:last-of-type .widget-row > span:last-child {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* ----------------------------- investment cards ---------------------------- */
+/* Portfolio Summary + Portfolio Health side by side. */
+/*
+.investment-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 18px 20px;
+}
+
+.investment-card h3 {
+  font-size: 0.92rem;
+  margin-bottom: 14px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.investment-card .summary-grid h4 {
+  font-size: 1.15rem;
+}
+
+/* Wrap both .investment-card blocks in a parent with this class in
+   Summary.js to place Portfolio Summary and Portfolio Health side by side:
+   <div className="investment-row"> ...both investment-card divs... </div> *//*
+.investment-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.investment-row .investment-card {
+  margin-bottom: 0;
+}
+
+@media (max-width: 860px) {
+  .investment-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --------------------------------- loading --------------------------------- */
+/*
+.summary-page > h3 {
+  text-align: center;
+  margin-top: 80px;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+}
+
+/* ---------------------------------- focus ----------------------------------- */
+/*
+.summary-page *:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* --------------------------------- responsive -------------------------------- */
+/*
+@media (max-width: 900px) {
+  .stat-card h4 {
+    font-size: 0.56rem;
+  }
+  .stat-card h2 {
+    font-size: clamp(0.78rem, 2.2vw, 1rem);
+  }
+  .stat-card {
+    padding: 10px 8px;
+  }
+}
+
+@media (max-width: 640px) {
+  .stats-grid {
+    flex-wrap: wrap;
+  }
+  .stat-card {
+    flex: 1 1 calc(50% - 5px);
+  }
+
+  .summary-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .widget-card:first-of-type .widget-row,
+  .widget-card:last-of-type .widget-row {
+    font-size: 0.8rem;
+    column-gap: 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dashboard-header h2::after {
+    animation: none;
+  }
+  .stat-card,
+  .stat-card:hover {
+    transition: none;
+  }
+} */
+ /* ==========================================================================
+   Summary.css — Portfolio Dashboard (Light)
+   Clean white "brokerage statement" look. Tabular mono numerals for every
+   money/percent figure. Profit/loss carried only by color (green/red).
+   Stat strip is forced to one row; charts and summary pairs sit side by side.
+   ========================================================================== */
+
+/* @import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap");
+
+:root {
+  --bg: #f7f8fa;
+  --surface: #ffffff;
+  --border: #e7e9ed;
+  --border-soft: #eef0f3;
+
+  --text: #1a1d24;
+  --text-muted: #6b7280;
+  --text-faint: #9aa1ac;
+
+  --profit: #0a9d62;
+  --profit-bg: #e7f7ef;
+  --loss: #e0334d;
+  --loss-bg: #fdebee;
+  --accent: #3b6fd9;
+  --accent-bg: #eaf0fd;
+
+  /* per-metric icon colors — each stat card gets its own identity *//*
+  --c-wallet: #3b6fd9;
+  --c-wallet-bg: #eaf0fd;
+  --c-coins: #d97706;
+  --c-coins-bg: #fef3e2;
+  --c-chart: #0a9d62;
+  --c-chart-bg: #e7f7ef;
+  --c-briefcase: #7c3aed;
+  --c-briefcase-bg: #f3ebfd;
+  --c-clipboard: #0d9488;
+  --c-clipboard-bg: #e3f6f4;
+  --c-funds: #4f46e5;
+  --c-funds-bg: #ecebfd;
+
+  --font-display: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: "JetBrains Mono", "SF Mono", Menlo, monospace;
+
+  --radius: 12px;
+  --radius-sm: 8px;
+  --shadow: 0 1px 2px rgba(20, 24, 32, 0.04), 0 1px 8px rgba(20, 24, 32, 0.03);
+}
+
+/* ---------------------------------- base --------------------------------- */
+/*
+.summary-page {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-display);
+  padding: 28px clamp(16px, 4vw, 40px) 60px;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.summary-page * {
+  box-sizing: border-box;
+}
+
+.summary-page h2,
+.summary-page h3,
+.summary-page h4 {
+  margin: 0;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.summary-page p {
+  margin: 0;
+}
+
+.profit {
+  color: var(--profit) !important;
+}
+
+.loss {
+  color: var(--loss) !important;
+}
+
+/* --------------------------------- header -------------------------------- */
+/*
+.dashboard-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 22px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.dashboard-header h2 {
+  font-size: 1.4rem;
+  color: var(--text);
+}
+
+.dashboard-header h2::after {
+  content: "";
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  margin-left: 10px;
+  border-radius: 50%;
+  background: var(--profit);
+  box-shadow: 0 0 0 0 rgba(10, 157, 98, 0.45);
+  animation: live-pulse 2.2s ease-out infinite;
+  vertical-align: middle;
+}
+
+@keyframes live-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(10, 157, 98, 0.4); }
+  70% { box-shadow: 0 0 0 7px rgba(10, 157, 98, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(10, 157, 98, 0); }
+}
+
+/* ------------------------------- stats grid ------------------------------- */
+/* Forced single row: 6 equal-width cards that shrink together, never wrap. */
+/*
+.stats-grid {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 10px;
+  margin-bottom: 22px;
+}
+/*
+.stat-card {
+  position: relative;
+  flex: 1 1 0;
+  min-width: 0;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow);
+  padding: 14px 12px 12px;
+  overflow: hidden;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(20, 24, 32, 0.09);
+}
+
+.stat-card:hover .card-icon {
+  transform: scale(1.08);
+}
+
+.stat-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--text-faint);
+  opacity: 0.35;
+}
+
+.stat-card:nth-of-type(1)::before { background: var(--c-wallet); opacity: 1; }
+.stat-card:nth-of-type(2)::before { background: var(--c-coins); opacity: 1; }
+.stat-card:nth-of-type(3)::before { background: var(--c-chart); opacity: 1; }
+.stat-card:nth-of-type(3):has(h2.loss)::before { background: var(--loss); }
+.stat-card:nth-of-type(4)::before { background: var(--c-briefcase); opacity: 1; }
+.stat-card:nth-of-type(5)::before { background: var(--c-clipboard); opacity: 1; }
+.stat-card:nth-of-type(6)::before { background: var(--c-funds); opacity: 1; }
+
+.stat-card .card-icon {
+  position: static;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  margin-bottom: 10px;
+  background: var(--text-faint);
+  color: #ffffff;
+  opacity: 0.5;
+  transition: transform 0.2s ease;
+}
+
+.stat-card:nth-of-type(1) .card-icon { background: var(--c-wallet-bg); color: var(--c-wallet); opacity: 1; }
+.stat-card:nth-of-type(2) .card-icon { background: var(--c-coins-bg); color: var(--c-coins); opacity: 1; }
+.stat-card:nth-of-type(3) .card-icon { background: var(--c-chart-bg); color: var(--c-chart); opacity: 1; }
+.stat-card:nth-of-type(3):has(h2.loss) .card-icon { background: var(--loss-bg); color: var(--loss); }
+.stat-card:nth-of-type(4) .card-icon { background: var(--c-briefcase-bg); color: var(--c-briefcase); opacity: 1; }
+.stat-card:nth-of-type(5) .card-icon { background: var(--c-clipboard-bg); color: var(--c-clipboard); opacity: 1; }
+.stat-card:nth-of-type(6) .card-icon { background: var(--c-funds-bg); color: var(--c-funds); opacity: 1; }
+
+.stat-card h4 {
+  font-size: 0.62rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 14px;
+}
+
+.stat-card h2 {
+  font-family: var(--font-mono);
+  font-size: clamp(0.95rem, 1.4vw, 1.2rem);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.stat-card h2.profit,
+.stat-card h2.loss {
+  font-weight: 700;
+}
+
+/* ------------------------------- chart cards ------------------------------ */
+/*
+.chart-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 18px 20px;
+}
+
+.chart-card h3 {
+  font-size: 0.92rem;
+  color: var(--text);
+  margin-bottom: 14px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+/* Performance + Allocation side by side, plus everywhere else .dashboard-row
+   is used (insights, holdings/orders, summary/health). *//*
+.dashboard-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+  align-items: stretch;
+}
+
+.growth-chart {
+  grid-column: span 1;
+}
+
+.growth-chart canvas {
+  max-height: 240px;
+}
+
+.dashboard-row .chart-card:last-child canvas {
+  max-height: 220px;
+}
+
+@media (max-width: 860px) {
+  .dashboard-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --------------------------- portfolio insights --------------------------- */
+/*
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px 12px;
+}
+
+.summary-grid > div p {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  margin-bottom: 5px;
+}
+
+.summary-grid > div h4 {
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--text);
+}
+
+/* ------------------------------- profile card ------------------------------ */
+/*
+.profile-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 16px 20px;
+  margin-bottom: 16px;
+}
+
+.avatar {
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), #2b54ad);
+  color: #ffffff;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+.profile-card h3 {
+  font-size: 0.98rem;
+  color: var(--text);
+}
+
+.profile-card p {
+  font-size: 0.76rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+/* ------------------------- holdings / orders widgets ----------------------- */
+/*
+.widget-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 16px 18px;
+}
+
+.widget-card h3 {
+  font-size: 0.92rem;
+  margin-bottom: 4px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+/* Top Holdings rows: name (hidden dup span) / name+qty block / price.
+   Give the price column a fixed, generous, right-aligned lane so it never
+   sits flush against the qty text. *//*
+.widget-card:first-of-type .widget-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  column-gap: 20px;
+  padding: 11px 4px;
+  border-bottom: 1px solid var(--border-soft);
+  font-size: 0.85rem;
+}
+
+.widget-card:first-of-type .widget-row > span:first-child {
+  display: none;
+}
+
+.widget-card:first-of-type .widget-row > div:first-of-type {
+  line-height: 1.35;
+}
+
+.widget-card:first-of-type .widget-row > div:first-of-type strong {
+  font-weight: 600;
+  color: var(--text);
+  font-size: 0.86rem;
+}
+
+.widget-card:first-of-type .widget-row > div:first-of-type br {
+  display: block;
+  content: "";
+  margin-top: 2px;
+}
+
+.widget-card:first-of-type .widget-row > div:last-child {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  font-weight: 600;
+  color: var(--text);
+  font-size: 0.9rem;
+  white-space: nowrap;
+  min-width: 90px;
+}
+
+/* Recent Orders rows: name / mode badge / qty *//*
+.widget-card:last-of-type .widget-row {
+  display: grid;
+  grid-template-columns: 1.4fr auto 56px;
+  align-items: center;
+  column-gap: 14px;
+  padding: 11px 4px;
+  border-bottom: 1px solid var(--border-soft);
+  font-size: 0.85rem;
+}
+
+.widget-card .widget-row:last-child {
+  border-bottom: none;
+}
+
+.widget-card:last-of-type .widget-row > span:first-child {
+  font-weight: 600;
+  color: var(--text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.widget-card:last-of-type .widget-row > span:nth-child(2) {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  padding: 3px 9px;
+  border-radius: 4px;
+  background: var(--accent-bg);
+  color: var(--accent);
+  justify-self: start;
+  white-space: nowrap;
+}
+
+/* Add className="sell" on the order-mode <span> (BUY vs SELL) in Summary.js
+   for red styling — CSS can only match a class, not the text itself. *//*
+.widget-card:last-of-type .widget-row > span.sell {
+  background: var(--loss-bg);
+  color: var(--loss);
+}
+
+.widget-card:last-of-type .widget-row > span:last-child {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* ----------------------------- investment cards ---------------------------- */
+/* Portfolio Summary + Portfolio Health side by side. */
+/*
+.investment-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 18px 20px;
+}
+
+.investment-card h3 {
+  font-size: 0.92rem;
+  margin-bottom: 14px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.investment-card .summary-grid h4 {
+  font-size: 1.15rem;
+}
+
+/* Wrap both .investment-card blocks in a parent with this class in
+   Summary.js to place Portfolio Summary and Portfolio Health side by side:
+   <div className="investment-row"> ...both investment-card divs... </div> *//*
+.investment-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.investment-row .investment-card {
+  margin-bottom: 0;
+}
+
+@media (max-width: 860px) {
+  .investment-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --------------------------------- loading --------------------------------- */
+/*
+.summary-page > h3 {
+  text-align: center;
+  margin-top: 80px;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+}
+
+/* ---------------------------------- focus ----------------------------------- */
+/*
+.summary-page *:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* --------------------------------- responsive -------------------------------- */
+/*
+@media (max-width: 900px) {
+  .stat-card h4 {
+    font-size: 0.56rem;
+  }
+  .stat-card h2 {
+    font-size: clamp(0.78rem, 2.2vw, 1rem);
+  }
+  .stat-card {
+    padding: 10px 8px;
+  }
+  .stat-card .card-icon {
+    width: 24px;
+    height: 24px;
+    font-size: 0.7rem;
+    margin-bottom: 7px;
+  }
+}
+
+@media (max-width: 640px) {
+  .stats-grid {
+    flex-wrap: wrap;
+  }
+  .stat-card {
+    flex: 1 1 calc(50% - 5px);
+  }
+
+  .summary-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .widget-card:first-of-type .widget-row,
+  .widget-card:last-of-type .widget-row {
+    font-size: 0.8rem;
+    column-gap: 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dashboard-header h2::after {
+    animation: none;
+  }
+  .stat-card,
+  .stat-card:hover {
+    transition: none;
+  }
+} */
+/* ==========================================================================
+   Summary.css — Portfolio Dashboard
+   Matches reference layout: header w/ refresh, 4-up stat row, 3-up
+   funds/allocation/holdings row, 3-up chart/gainers/losers row,
+   2-up orders table/news row. White cards, soft shadows, indigo accent.
+   ========================================================================== */
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
+:root {
+  --bg: #f6f7fb;
+  --surface: #ffffff;
+  --border: #ecedf2;
+  --border-soft: #f2f3f7;
+
+  --text: #1c1f27;
+  --text-muted: #8a90a0;
+  --text-faint: #b3b8c4;
+
+  --profit: #1a9c5c;
+  --profit-bg: #e6f6ed;
+  --loss: #e0334d;
+  --loss-bg: #fdebee;
+
+  --accent: #4c5fe0;
+  --accent-dark: #3c4cc9;
+  --accent-bg: #eceeff;
+
+  --font: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+
+  --radius: 14px;
+  --radius-sm: 10px;
+  --shadow: 0 1px 2px rgba(20, 24, 40, 0.03), 0 4px 16px rgba(20, 24, 40, 0.04);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.summary-page {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  padding: 24px clamp(16px, 3vw, 36px) 50px;
+  min-height: 100vh;
+}
+
+.summary-page h2,
+.summary-page h3,
+.summary-page h4 {
+  margin: 0;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.summary-page p {
+  margin: 0;
+}
+
+.profit {
+  color: var(--profit) !important;
+}
+
+.loss {
+  color: var(--loss) !important;
+}
+
+.loading-text {
+  text-align: center;
+  margin-top: 100px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* --------------------------------- header -------------------------------- */
+
+.dashboard-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 22px;
+}
+
+.dashboard-header h2 {
+  font-size: 1.45rem;
+  color: var(--text);
+}
+
+.wave {
+  display: inline-block;
+}
+
+.header-sub {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+.header-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+.icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: none;
+  background: var(--accent-bg);
+  color: var(--accent);
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: transform 0.3s ease, background 0.2s ease;
+}
+
+.icon-btn:hover {
+  background: #e1e4ff;
+  transform: rotate(180deg);
+}
+
+/* ------------------------------- stats grid ------------------------------- */
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.stat-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow);
+  padding: 16px 18px;
+}
+
+.stat-card h4 {
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+
+.stat-card h2 {
+  font-size: 1.45rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+
+.stat-sub {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-top: 6px;
+}
+
+/* ------------------------------- shared panel ------------------------------ */
+
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 18px 20px;
+}
+
+.panel h3 {
+  font-size: 0.95rem;
+  color: var(--text);
+  margin-bottom: 16px;
+}
+
+.row-3 {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr 1fr;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.row-2 {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.view-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 14px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.view-link:hover {
+  text-decoration: underline;
+}
+
+.empty-state {
+  color: var(--text-faint);
+  font-size: 0.82rem;
+  padding: 10px 0;
+}
+
+/* -------------------------------- funds card ------------------------------- */
+
+.funds-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.funds-row:last-of-type {
+  border-bottom: none;
+}
+
+.funds-row .label {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.funds-row h4 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.add-funds-btn {
+  width: 100%;
+  margin-top: 14px;
+  padding: 11px 0;
+  border: none;
+  border-radius: 9px;
+  background: var(--accent);
+  color: #ffffff;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.add-funds-btn:hover {
+  background: var(--accent-dark);
+  transform: translateY(-1px);
+}
+
+/* ----------------------------- allocation card ----------------------------- */
+
+.allocation-body {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.doughnut-wrap {
+  position: relative;
+  width: 130px;
+  height: 130px;
+  flex-shrink: 0;
+}
+
+.doughnut-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.doughnut-value {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.doughnut-label {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.legend-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.legend-list li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+}
+
+.legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.legend-name {
+  flex: 1;
+  color: var(--text);
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.legend-pct {
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+/* ------------------------------ top holdings ------------------------------- */
+
+.top-holdings-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.holding-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.holding-row:last-child {
+  border-bottom: none;
+}
+
+.holding-name {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.holding-figures {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 3px;
+}
+
+.holding-value {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.holding-change {
+  font-size: 0.72rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* --------------------------------- chart row -------------------------------- */
+
+.row-chart {
+  grid-template-columns: 1.6fr 1fr 1fr;
+}
+
+.chart-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.chart-card-header h3 {
+  margin-bottom: 0;
+}
+
+.range-toggle {
+  display: flex;
+  gap: 4px;
+}
+
+.range-btn {
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 5px 9px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.range-btn:hover {
+  background: var(--border-soft);
+}
+
+.range-btn.active {
+  background: var(--accent);
+  color: #ffffff;
+}
+
+.line-chart-wrap {
+  height: 200px;
+}
+
+.movers-card .movers-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.movers-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--border-soft);
+  font-size: 0.82rem;
+}
+
+.movers-list li:last-child {
+  border-bottom: none;
+}
+
+.movers-list li span:first-child {
+  font-weight: 500;
+  color: var(--text);
+}
+
+.movers-list li span:last-child {
+  font-weight: 700;
+}
+
+/* -------------------------------- orders table ------------------------------- */
+
+.orders-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+}
+
+.orders-table thead th {
+  text-align: left;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--text-faint);
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.orders-table tbody td {
+  padding: 11px 4px;
+  border-bottom: 1px solid var(--border-soft);
+  color: var(--text);
+}
+
+.orders-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.type-badge {
+  font-weight: 700;
+  font-size: 0.78rem;
+}
+
+.type-badge.buy {
+  color: var(--profit);
+}
+
+.type-badge.sell {
+  color: var(--loss);
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+.status-badge.completed {
+  background: var(--profit-bg);
+  color: var(--profit);
+}
+
+.status-badge.pending {
+  background: #fff4e0;
+  color: #c07a05;
+}
+
+.status-badge.cancelled,
+.status-badge.failed {
+  background: var(--loss-bg);
+  color: var(--loss);
+}
+
+/* ---------------------------------- news card -------------------------------- */
+
+.news-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.news-list li {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.news-list li:last-child {
+  border-bottom: none;
+}
+
+.news-text {
+  font-size: 0.84rem;
+  color: var(--text);
+  font-weight: 500;
+}
+
+.news-time {
+  font-size: 0.72rem;
+  color: var(--text-faint);
+}
+
+/* ---------------------------------- focus ------------------------------------ */
+
+.summary-page *:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* --------------------------------- responsive --------------------------------- */
+
+@media (max-width: 1100px) {
+  .row-3,
+  .row-chart {
+    grid-template-columns: 1fr 1fr;
+  }
+  .row-3 .holdings-card,
+  .row-chart .panel:first-child {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 860px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .row-3,
+  .row-chart,
+  .row-2 {
+    grid-template-columns: 1fr;
+  }
+  .row-3 .holdings-card,
+  .row-chart .panel:first-child {
+    grid-column: span 1;
+  }
+  .dashboard-header {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 520px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+  .allocation-body {
+    flex-direction: column;
+  }
+  .orders-table {
+    font-size: 0.74rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .icon-btn,
+  .add-funds-btn {
+    transition: none;
+  }
+}

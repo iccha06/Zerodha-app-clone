@@ -5,3 +5,4 @@ build/
 .env.*
 !frontend/.env.production
 .DS_Store
+!dashboard/.env.production
