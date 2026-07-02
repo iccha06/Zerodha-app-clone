@@ -1,4 +1,4 @@
-# 📈 Zerodha Clone — Full-Stack Trading Platform
+# 📈 Zerodha-inspired Trading Dashboard 
 
 A full-stack clone of [Zerodha](https://zerodha.com/) — India's largest stock broker — built to replicate its **marketing website**, **trading dashboard**, and **admin analytics panel**. The project covers end-to-end product development: a public-facing landing site, a JWT-authenticated trading app with real portfolio logic (buy/sell, holdings, positions, P&L), and an admin panel with live charts for platform monitoring.
 
