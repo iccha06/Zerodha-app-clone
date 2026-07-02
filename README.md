@@ -1,6 +1,9 @@
-# 📈 Zerodha-inspired Trading Dashboard 
+# 📈 Full-Stack Stock Trading Platform (MERN)
 
-A full-stack clone of [Zerodha](https://zerodha.com/) — India's largest stock broker — built to replicate its **marketing website**, **trading dashboard**, and **admin analytics panel**. The project covers end-to-end product development: a public-facing landing site, a JWT-authenticated trading app with real portfolio logic (buy/sell, holdings, positions, P&L), and an admin panel with live charts for platform monitoring.
+A full-stack stock trading platform built with the MERN stack, delivering a modern trading experience end-to-end. The project includes a responsive marketing website, a secure JWT-authenticated trading dashboard, and an admin analytics portal for platform monitoring.
+
+The landing page draws visual inspiration from [Zerodha's](https://zerodha.com/) design language, but the trading dashboard, backend architecture, REST APIs, authentication system, portfolio management logic (holdings, positions, and order execution), and admin analytics engine are all custom-built from scratch.
+
 
 **🔗 Live Demo:** [zerodha-frontend-ten.vercel.app](https://zerodha-frontend-ten.vercel.app/) → Sign Up redirects to the [Trading Dashboard](https://zerodha-dashboard-mu-nine.vercel.app/)
 
