@@ -10,7 +10,7 @@ import HomePage from './landing_page/home/HomePage';
  import SupportPage from './landing_page/support/SupportPage';
 import Navbar from './landing_page/Navbar';
 import Footer from './landing_page/Footer';
-import NotFound from './landing_page/NotFound';
+import NotFound from './landing_page/Notfound';
 
 createRoot(document.getElementById('root')).render(
   <BrowserRouter>
