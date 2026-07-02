@@ -3,13 +3,13 @@ import React from 'react';
 function Hero() {
     const handleSignup = () => {
     // Dashboard URL (Development)
-    window.location.href = `${import.meta.env.VITE_DASHBOARD_URL}/login`;
+    window.location.href = `${import.meta.env.VITE_DASHBOARD_URL}/`;
   };
     return (
         <>
             <div className='container p-5 mb-5'>
                 <div className='row text-center'>
-                    <img src='src/images/landing.svg' alt='landing image' className=' justify-content-center text-center mb-5' style={{ width: "95%" }} />
+                    <img src='/images/landing.svg' alt='landing image' className=' justify-content-center text-center mb-5' style={{ width: "95%" }} />
                     <h1 className='mt-5'>
                         Invest in everything
                     </h1>

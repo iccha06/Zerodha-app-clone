@@ -36,7 +36,7 @@ function Stats() {
                 {/* Right Section */}
                 <div className='col-lg-6 py-4'>
                     <img
-                        src='src/images/ecosystem.png'
+                        src='/images/ecosystem.png'
                         style={{ width: "100%" }}
                         alt="ecosystem"
                     />

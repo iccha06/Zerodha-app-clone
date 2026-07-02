@@ -33,7 +33,7 @@ function Team() {
                 <div className='col-lg-5 text-center'>
 
                     <img
-                        src='src/images/nithinKamath.jpg'
+                        src='/images/nithinKamath.jpg'
                         alt='Nithin Kamath'
                         className='img-fluid shadow'
                         style={{

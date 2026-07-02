@@ -4,13 +4,13 @@ function Universe() {
 
     const products = [
         {
-            image: 'src/images/zerodhafundhouse.png',
+            image: '/images/zerodhafundhouse.png',
             width: '52%',
             description:
                 'Our asset management venture that is creating simple and transparent index funds to help you save for your goals.',
         },
         {
-            image: 'src/images/sensibullLogo.svg',
+            image: '/images/sensibullLogo.svg',
             width: '58%',
             description:
                 'Options trading platform that lets you create strategies, analyze positions, and examine data points easily.',
@@ -22,19 +22,19 @@ function Universe() {
                 'Investment research platform that offers detailed insights on stocks, sectors, supply chains, and more.',
         },
         {
-            image: 'src/images/streakLogo.png',
+            image: '/images/streakLogo.png',
             width: '52%',
             description:
                 'Systematic trading platform that allows you to create and backtest strategies without coding.',
         },
         {
-            image: 'src/images/smallcaseLogo.png',
+            image: '/images/smallcaseLogo.png',
             width: '55%',
             description:
                 'Thematic investing platform that helps you invest in diversified baskets of stocks and ETFs.',
         },
         {
-            image: 'src/images/dittoLogo.png',
+            image: '/images/dittoLogo.png',
             width: '48%',
             description:
                 'Personalized advice on life and health insurance. No spam and no mis-selling.',

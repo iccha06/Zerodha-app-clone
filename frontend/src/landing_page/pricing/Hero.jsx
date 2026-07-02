@@ -40,7 +40,7 @@ function Hero() {
                 <div className='col-lg-4 mb-4'>
 
                     <img
-                        src='src/images/pricing-eq.svg'
+                        src='/images/pricing-eq.svg'
                         alt='Equity'
                         style={{ width: "65%" }}
                     />
@@ -57,7 +57,7 @@ function Hero() {
                 <div className='col-lg-4 mb-4'>
 
                     <img
-                        src='src/images/intradayTrades.svg'
+                        src='/images/intradayTrades.svg'
                         alt='Intraday'
                         style={{ width: "65%" }}
                     />
@@ -74,7 +74,7 @@ function Hero() {
                 <div className='col-lg-4 mb-4'>
 
                     <img
-                        src='src/images/pricing-eq.svg'
+                        src='/images/pricing-eq.svg'
                         alt='Commodity'
                         style={{ width: "65%" }}
                     />

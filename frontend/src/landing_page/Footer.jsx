@@ -12,7 +12,7 @@ function Footer() {
                     <div className='col-lg-4'>
 
                         <img
-                            src='src/images/logo.svg'
+                            src='/images/logo.svg'
                             alt='logo'
                             style={{ width: "140px" }}
                             className='mb-4'

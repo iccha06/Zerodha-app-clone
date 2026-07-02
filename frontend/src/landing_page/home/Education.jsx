@@ -8,7 +8,7 @@ function Education() {
                 {/* Left Image Section */}
                 <div className='col-lg-6 mb-5'>
                     <img
-                        src='src/images/index-education.svg'
+                        src='/images/index-education.svg'
                         alt='education'
                         style={{ width: "75%" }}
                     />

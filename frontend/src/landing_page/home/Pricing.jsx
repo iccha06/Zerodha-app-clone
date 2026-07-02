@@ -29,7 +29,7 @@ function Pricing() {
                         {/* First */}
                         <div className='col-4 d-flex align-items-center gap-2'>
                             <img
-                                src='src/images/pricing0.svg'
+                                src='/images/pricing0.svg'
                                 alt='₹0'
                                 style={{ width: "100px" }}
                             />
@@ -41,7 +41,7 @@ function Pricing() {
                         {/* Second */}
                         <div className='col-4 d-flex align-items-center gap-2'>
                             <img
-                                src='src/images/pricing0.svg'
+                                src='/images/pricing0.svg'
                                 alt='₹0'
                                 style={{ width: "100px" }}
                             />
@@ -54,7 +54,7 @@ function Pricing() {
                         {/* Third */}
                         <div className='col-4 d-flex align-items-center gap-2'>
                             <img
-                                src='src/images/intradayTrades.svg'
+                                src='/images/intradayTrades.svg'
                                 alt='₹20'
                                 style={{ width: "100px" }}
                             />

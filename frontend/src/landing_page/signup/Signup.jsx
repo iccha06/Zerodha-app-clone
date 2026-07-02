@@ -3,7 +3,7 @@ import React from "react";
 function Signup() {
   const handleSignup = () => {
     // Dashboard URL (development)
-    window.location.href = `${import.meta.env.VITE_DASHBOARD_URL}/login`;
+    window.location.href = `${import.meta.env.VITE_DASHBOARD_URL}/`;
   };
 
   return (

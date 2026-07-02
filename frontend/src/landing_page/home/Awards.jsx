@@ -8,7 +8,7 @@ function Awards() {
                 {/* Left Image */}
                 <div className='col-lg-6 py-3 d-flex justify-content-start'>
                     <img
-                        src='src/images/largestBroker.svg'
+                        src='/images/largestBroker.svg'
                         alt='largest broker'
                         style={{ width: "85%" }}
                     />
@@ -49,7 +49,7 @@ function Awards() {
 
                     {/* Press Image */}
                     <img
-                        src='src/images/pressLogos.png'
+                        src='/images/pressLogos.png'
                         alt='press logos'
                         style={{ width: "90%" }}
                     />
