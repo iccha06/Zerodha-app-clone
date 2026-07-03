@@ -181,7 +181,7 @@ Zerodha-app-clone/
 
 ## 📡 API Reference
 
-Base URL: `<your-render-backend-url>`
+
 
 ### Auth — `/auth`
 | Method | Endpoint | Description | Auth |
@@ -282,7 +282,7 @@ For `frontend` and `dashboard`, set the deployed/local backend base URL wherever
 
 ## 🖼️ Screenshots
 
-> _Add screenshots or a short screen recording of the landing page, dashboard, and admin panel here to make the README stand out to recruiters._
+> _will add screenshots_
 
 ```
 | Landing Page | Trading Dashboard | Admin Panel |
